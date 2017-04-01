@@ -1,0 +1,8 @@
+name: PracticeServer
+version: ${project.version}
+main: com.matthewedevelopment.ps.PracticeServer
+author: matt11matthew
+commands:
+  bank:
+  toggles:
+  toggledebug:
