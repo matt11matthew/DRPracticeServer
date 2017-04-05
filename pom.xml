@@ -38,7 +38,8 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <minimizeJar>true</minimizeJar>
+                            <finalName>PracticeServer</finalName>
+                            <outputFile>C:\Users\matt1\Desktop\Show\PS\plugins\PracticeServer.jar\</outputFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -66,7 +67,7 @@
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
+            <artifactId>spigot</artifactId>
             <version>1.9.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>

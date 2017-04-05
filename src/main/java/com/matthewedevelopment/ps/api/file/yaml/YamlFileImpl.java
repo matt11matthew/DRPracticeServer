@@ -1,12 +1,16 @@
 package com.matthewedevelopment.ps.api.file.yaml;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
+import com.matthewedevelopment.ps.mechanics.item.builder.IItemBuilder;
+import com.matthewedevelopment.ps.mechanics.item.builder.ItemBuilder;
+import org.bukkit.*;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by matt1 on 3/22/2017.
@@ -103,7 +107,23 @@ public class YamlFileImpl implements YamlFile {
         }
     }
 
-    private YamlConfiguration get() {
+    @Override
+    public ItemStack getItem(String key) {
+        ConfigurationSection section = this.get().getConfigurationSection(key + ".item");
+        List<String> loreList = section.getStringList("lore");
+        List<String> newLoreList = new ArrayList<>();
+        loreList.forEach(lore -> newLoreList.add(ChatColor.translateAlternateColorCodes('&', lore)));
+        IItemBuilder itemBuilder = new ItemBuilder()
+                .setType(Material.valueOf(section.getString("type")))
+                .setAmount(section.getInt("amount"))
+                .setData(section.getInt("data"))
+                .setDisplayName(ChatColor.translateAlternateColorCodes('&', section.getString("displayName")))
+                .setLore(newLoreList);
+        return itemBuilder.build();
+    }
+
+    @Override
+    public YamlConfiguration get() {
         return yamlConfiguration;
     }
 
@@ -116,6 +136,17 @@ public class YamlFileImpl implements YamlFile {
         double yaw = yamlConfiguration.getDouble(key+".location.yaw");
         double pitch = yamlConfiguration.getDouble(key+".location.pitch");
         Location location = new Location(world, x, y, z, Float.valueOf(String.valueOf(yaw)), Float.valueOf(String.valueOf(pitch)));
+        return location;
+    }
+
+    public Location getSpawnerLocation(ConfigurationSection yamlConfiguration) {
+        String parse = yamlConfiguration.getString("location");
+        String[] data = parse.split(":");
+        String world = data[0];
+        int x = Integer.parseInt(data[1]);
+        int y = Integer.parseInt(data[2]);
+        int z = Integer.parseInt(data[3]);
+        Location location = new Location(Bukkit.getWorld(world), x, y, z);
         return location;
     }
 

@@ -25,9 +25,18 @@ public class PsPlayer {
     private String username;
     private HashMap<String, Object> dataMap;
     private YamlFile yamlFile;
+    private PlayerAttributes playerAttributes;
 
     public PsPlayer() {
         this.dataMap = new HashMap<>();
+    }
+
+    public PlayerAttributes getPlayerAttributes() {
+        return playerAttributes;
+    }
+
+    public void setPlayerAttributes(PlayerAttributes playerAttributes) {
+        this.playerAttributes = playerAttributes;
     }
 
     private void loadDataMap(Player player) {
@@ -197,5 +206,9 @@ public class PsPlayer {
     public void quit() {
         PsPlayerQuitEvent event = new PsPlayerQuitEvent(this);
         Bukkit.getPluginManager().callEvent(event);
+    }
+
+    public Player getPlayer() {
+        return Bukkit.getPlayer(uniqueId);
     }
 }

@@ -63,14 +63,17 @@ public class XmlNode {
 	 * @return The child XML node with the given name.
 	 */
 	public XmlNode getChild(String childName) {
-		if (childNodes != null) {
-			List<XmlNode> nodes = childNodes.get(childName);
-			if (nodes != null && !nodes.isEmpty()) {
-				return nodes.get(0);
+		try {
+			if (childNodes != null) {
+				List<XmlNode> nodes = childNodes.get(childName);
+				if (nodes != null && !nodes.isEmpty()) {
+					return nodes.get(0);
+				}
 			}
+			return null;
+		} catch (NullPointerException e) {
+			return null;
 		}
-		return null;
-
 	}
 
 	/**

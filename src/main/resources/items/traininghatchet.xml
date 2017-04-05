@@ -1,0 +1,11 @@
+<customitem name="training hatchet">
+    <name>Training Hatchet</name>
+    <tier>1</tier>
+    <type>axe</type>
+    <stats>
+        <lowdamage>1-3</lowdamage>
+        <highdamage>4-6</highdamage>
+    </stats>
+    <untradable>true</untradable>
+    <soulbound>false</soulbound>
+</customitem>

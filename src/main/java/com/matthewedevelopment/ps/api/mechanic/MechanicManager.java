@@ -34,7 +34,7 @@ public class MechanicManager {
     public void registerMechanics() {
         this.mechanicHashMap.values().forEach(gameMechanic -> {
             Bukkit.getServer().getPluginManager().registerEvents(gameMechanic, PracticeServer.getPracticeServer());
-            gameMechanic.onDisable();
+            gameMechanic.onEnable();
         });
     }
 

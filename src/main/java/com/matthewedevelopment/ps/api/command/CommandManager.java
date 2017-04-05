@@ -19,6 +19,6 @@ public class CommandManager {
     }
 
     public void registerCommand(BaseCommand baseCommand) {
-        baseCommand.register();
+        baseCommand.register(baseCommand);
     }
 }

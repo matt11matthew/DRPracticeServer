@@ -105,6 +105,14 @@ public class PlayerManager implements Listener {
         duelPlayer.quit();
     }
 
+    @EventHandler(ignoreCancelled = true)
+    public void onInventoryClick(InventoryClickEvent event) {
+        PsPlayer psPlayer = getPlayer((Player) event.getWhoClicked());
+        psPlayer.setPlayerAttributes(new PlayerAttributes(psPlayer));
+        psPlayer.getPlayerAttributes().weapon();
+        psPlayer.getPlayerAttributes().armor();
+    }
+
     private List<Player> blind = new ArrayList<>();
 
     @EventHandler

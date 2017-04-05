@@ -1,11 +1,9 @@
 package com.matthewedevelopment.ps.mechanics.player.achievement;
 
 import com.matthewedevelopment.ps.PracticeServer;
-import com.matthewedevelopment.ps.api.command.CommandManager;
 import com.matthewedevelopment.ps.api.mechanic.GameMechanic;
 import com.matthewedevelopment.ps.mechanics.player.ps.PlayerManager;
 import com.matthewedevelopment.ps.mechanics.player.ps.PsPlayer;
-import com.matthewedevelopment.ps.mechanics.player.achievement.commands.CommandAchievements;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -30,7 +28,7 @@ public class AchievementMechanics extends GameMechanic {
     }
     @Override
     public void onEnable() {
-        CommandManager.getInstance().registerCommand(new CommandAchievements());
+        //CommandManager.getInstance().registerCommand(new CommandAchievements());
     }
 
     @Override

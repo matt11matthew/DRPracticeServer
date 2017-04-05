@@ -6,3 +6,5 @@ commands:
   bank:
   toggles:
   toggledebug:
+  customitem:
+  createitem:

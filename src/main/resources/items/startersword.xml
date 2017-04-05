@@ -1,0 +1,11 @@
+<customitem name="training sword">
+    <name>Training Shortsword</name>
+    <tier>1</tier>
+    <type>sword</type>
+    <stats>
+        <lowdamage>1-2</lowdamage>
+        <highdamage>3-5</highdamage>
+    </stats>
+    <untradable>true</untradable>
+    <soulbound>false</soulbound>
+</customitem>

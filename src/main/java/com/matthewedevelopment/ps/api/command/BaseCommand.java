@@ -35,7 +35,7 @@ public abstract class BaseCommand implements CommandExecutor {
 
     public abstract boolean execute(Player sender, String[] args);
 
-    public void register() {
-        PracticeServer.getPracticeServer().getCommand(this.name).setExecutor(this);
+    public void register(BaseCommand command) {
+        PracticeServer.getPracticeServer().getCommand(command.getName()).setExecutor(command);
     }
 }
