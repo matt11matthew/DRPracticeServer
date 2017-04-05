@@ -30,7 +30,6 @@ public class PlayerAttributes {
         }
         if (isWeapon(weapon)) {
             NBTTagCompound tag = CraftItemStack.asNMSCopy(weapon).getTag();
-            assert tag != null;
             Arrays.asList(PsAttribute.WeaponAttributeType.values()).forEach(modifier -> {
                 PsAttribute.WeaponAttributeType type = PsAttribute.WeaponAttributeType.getByNBTName(modifier.getNBTName());
                 assert type != null;

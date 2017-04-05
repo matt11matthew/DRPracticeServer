@@ -19,8 +19,8 @@ import java.util.Random;
 public class ItemGenerator {
     public static ItemStack createDrop(ItemTier tier, ItemType item, ItemRarity rarity) {
         String name = "";
-        String rare= "";
-        final ItemStack is = new ItemStack(Material.AIR);
+        String rare = "";
+        ItemStack is = new ItemStack(Material.AIR);
         final List<String> lore = new ArrayList<>();
         final Random random = new Random();
         final int armdps = random.nextInt(2) + 1;
@@ -485,56 +485,93 @@ public class ItemGenerator {
                 maxdmg = 1;
             }
             lore.add(ChatColor.RED + "DMG: " + mindmg + " - " + maxdmg);
+            ItemBuilder itemBuilder = new ItemBuilder(is);
+            itemBuilder.setTag("damage", mindmg + "-" + maxdmg);
             if (life == 1) {
                 lore.add(ChatColor.RED + "LIFE STEAL: " + lifeamt + "%");
                 name = "Vampyric " + name;
+                itemBuilder.setTag("lifesteal", lifeamt);
+            } else {
+                itemBuilder.setTag("lifesteal", 0);
             }
             if (crit == 1) {
                 lore.add(ChatColor.RED + "CRITICAL HIT: " + critamt + "%");
                 name = "Deadly " + name;
+                itemBuilder.setTag("crit", critamt);
+            } else {
+                itemBuilder.setTag("crit", 0);
             }
             if (elem == 3) {
                 lore.add(ChatColor.RED + "ICE DMG: +" + elemamt);
                 name = String.valueOf(name) + " of Ice";
+                itemBuilder.setTag("ice", elemamt);
+            } else {
+                itemBuilder.setTag("ice", 0);
             }
             if (elem == 2) {
                 lore.add(ChatColor.RED + "POISON DMG: +" + elemamt);
                 name = String.valueOf(name) + " of Poison";
+                itemBuilder.setTag("poison", elemamt);
+            } else {
+                itemBuilder.setTag("poison", 0);
             }
             if (elem == 1) {
                 lore.add(ChatColor.RED + "FIRE DMG: +" + elemamt);
                 name = String.valueOf(name) + " of Fire";
+                itemBuilder.setTag("fire", elemamt);
+            } else {
+                itemBuilder.setTag("fire", 0);
             }
+            is = itemBuilder.build();
         }
-        if (item == ItemType.SWORD) {
-            lore.add(ChatColor.RED + "DMG: " + mindmg + " - " + maxdmg);
-            if (acc == 1) {
-                lore.add(ChatColor.RED + "ACCURACY: " + accamt + "%");
-                name = "Accurate " + name;
-            }
-            if (life == 1) {
-                lore.add(ChatColor.RED + "LIFE STEAL: " + lifeamt + "%");
-                name = "Vampyric " + name;
-            }
-            if (crit == 1) {
-                lore.add(ChatColor.RED + "CRITICAL HIT: " + critamt + "%");
-                name = "Deadly " + name;
-            }
-            if (elem == 3) {
-                lore.add(ChatColor.RED + "ICE DMG: +" + elemamt);
-                name = String.valueOf(name) + " of Ice";
-            }
-            if (elem == 2) {
-                lore.add(ChatColor.RED + "POISON DMG: +" + elemamt);
-                name = String.valueOf(name) + " of Poison";
-            }
-            if (elem == 1) {
-                lore.add(ChatColor.RED + "FIRE DMG: +" + elemamt);
-                name = String.valueOf(name) + " of Fire";
-            }
+        ItemBuilder itemBuilder = new ItemBuilder(is);
+        itemBuilder.setTag("damage", mindmg + "-" + maxdmg);
+        if (acc == 1) {
+            lore.add(ChatColor.RED + "ACCURACY: " + accamt + "%");
+            name = "Accurate " + name;
+            itemBuilder.setTag("accuracy", accamt);
+        } else {
+            itemBuilder.setTag("accuracy", 0);
+        }
+        if (life == 1) {
+            lore.add(ChatColor.RED + "LIFE STEAL: " + lifeamt + "%");
+            name = "Vampyric " + name;
+            itemBuilder.setTag("lifesteal", lifeamt);
+        } else {
+            itemBuilder.setTag("lifesteal", 0);
+        }
+        if (crit == 1) {
+            lore.add(ChatColor.RED + "CRITICAL HIT: " + critamt + "%");
+            name = "Deadly " + name;
+            itemBuilder.setTag("crit", critamt);
+        } else {
+            itemBuilder.setTag("crit", 0);
+        }
+        if (elem == 3) {
+            lore.add(ChatColor.RED + "ICE DMG: +" + elemamt);
+            name = String.valueOf(name) + " of Ice";
+            itemBuilder.setTag("ice", elemamt);
+        } else {
+            itemBuilder.setTag("ice", 0);
+        }
+        if (elem == 2) {
+            lore.add(ChatColor.RED + "POISON DMG: +" + elemamt);
+            name = String.valueOf(name) + " of Poison";
+            itemBuilder.setTag("poison", elemamt);
+        } else {
+            itemBuilder.setTag("poison", 0);
+        }
+        if (elem == 1) {
+            lore.add(ChatColor.RED + "FIRE DMG: +" + elemamt);
+            name = String.valueOf(name) + " of Fire";
+            itemBuilder.setTag("fire", elemamt);
+        } else {
+            itemBuilder.setTag("fire", 0);
         }
         if (item == ItemType.AXE) {
             lore.add(ChatColor.RED + "DMG: " + (int) (mindmg * 1.2) + " - " + (int) (maxdmg * 1.2));
+            itemBuilder.setTag("poison", 0);
+
             if (pure == 1) {
                 lore.add(ChatColor.RED + "PURE DMG: +" + pureamt);
                 name = "Pure " + name;
@@ -560,6 +597,7 @@ public class ItemGenerator {
                 name = String.valueOf(name) + " of Fire";
             }
         }
+        is = itemBuilder.build();
         if (item == ItemType.BOOTS || item == ItemType.HELMET) {
             dpsamt = (int) (dpsamt * 0.5);
             if (dpsamt < 1) {
