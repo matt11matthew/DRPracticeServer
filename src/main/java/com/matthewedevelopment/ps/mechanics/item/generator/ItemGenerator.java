@@ -1044,4 +1044,8 @@ public class ItemGenerator {
         is.setItemMeta(im);
         return new ItemBuilder(is).build();
     }
+
+    public static ItemStack createOrb(int amount) {
+        return null;
+    }
 }

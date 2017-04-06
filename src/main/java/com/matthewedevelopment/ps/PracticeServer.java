@@ -6,6 +6,7 @@ import com.matthewedevelopment.ps.mechanics.item.CustomItem;
 import com.matthewedevelopment.ps.mechanics.item.ItemMechanics;
 import com.matthewedevelopment.ps.mechanics.item.commands.CommandCreateDrop;
 import com.matthewedevelopment.ps.mechanics.item.commands.CommandCustomItem;
+import com.matthewedevelopment.ps.mechanics.money.MoneyMechanics;
 import com.matthewedevelopment.ps.mechanics.monster.MonsterMechanics;
 import com.matthewedevelopment.ps.mechanics.player.JoinMechanic;
 import com.matthewedevelopment.ps.mechanics.player.achievement.AchievementMechanics;
@@ -34,6 +35,7 @@ public final class PracticeServer extends JavaPlugin {
         mechanicManager.registerMechanic(JoinMechanic.getInstance());
         mechanicManager.registerMechanic(ItemMechanics.getInstance());
         mechanicManager.registerMechanic(new MonsterMechanics());
+        mechanicManager.registerMechanic(new MoneyMechanics());
         mechanicManager.registerMechanics();
         File folder = new File(getDataFolder() + "/olditems/");
         for (File file : folder.listFiles()) {
